@@ -11,14 +11,14 @@ class GenerateData():
 		self.total_data_points = total_data_points
 		self.deviation = deviation
 
-	def gen(self, total_data_points, deviation):
+	def gen(self):
 		label_11 = []
 		label_0 = []
 		label_12 = []
 
-		s_11 = np.random.default_rng().normal(-1.5, deviation, int(total_data_points / 4))
-		s_0 = np.random.default_rng().normal(0, deviation, int(total_data_points / 2))
-		s_12 = np.random.default_rng().normal(1.5, deviation, int(total_data_points / 4))
+		s_11 = np.random.default_rng().normal(-1.5, self.deviation, int(self.total_data_points / 4))
+		s_0 = np.random.default_rng().normal(0, self.deviation, int(self.total_data_points / 2))
+		s_12 = np.random.default_rng().normal(1.5, self.deviation, int(self.total_data_points / 4))
 
 		for i in range(len(s_11)):
 			label_11.append(-1)
@@ -30,15 +30,14 @@ class GenerateData():
 		x = np.append(x, s_0)
 		x_label = np.append(label_11, label_12)
 		x_label = np.append(x_label, label_0)
-		data_dict = pd.DataFrame({'DataPoint': x, 'Label': x_label})
+		data_dict = pd.DataFrame({'DataPoint': x, 'Label': x_label}).transpose()
 
 		return data_dict  # , x, x_label
 
 	def plot(self, data_dict):
-		y = np.ones(len(data_dict))
-		df = data_dict.transpose()
-		x = df.values[0]
-		x_label = df.values[1]
+		y = np.ones(self.total_data_points)
+		x = data_dict.values[0]
+		x_label = data_dict.values[1]
 		area = 50
 
 		plt.scatter(x, y, area, x_label, alpha=.5)
