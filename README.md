@@ -1,2 +1,2 @@
 # QNNs
-This is my repository for my experiments on QNNs via Cirq and TensorFlow Quantum
+This is a repository for my experiments on QNNs via Cirq and TensorFlow Quantum
