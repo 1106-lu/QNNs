@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-class GenerateData():
+class GenerateDataRandomNormal():
 
 	def __init__(self,
 	             total_data_points: int,
