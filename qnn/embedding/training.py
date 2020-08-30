@@ -3,12 +3,20 @@ from qnn.embedding.circuits import Circuits
 
 import time
 import progressbar
+import qutip as qt
 import matplotlib.pyplot as plt
 
 def train(circuits, lr, epsilon, epoch, params):
     #params = np.random.normal(0, 2*np.pi, 80)
     cs_func = Circuits(depth=4)
     sample_vectors = cs_func.sample(cs=circuits, theta=params)
+
+    be = qt.Bloch()
+    for i in range(len(sample_vectors)):
+        be.add_states(qt.Qobj(inpt=sample_vectors[i]), kind='point')
+    be.save(name='/qnn/embedding/data_tmp/before.png', format='png', dirc=None)
+    #be.show()
+
     print(cost(sample_vectors))
     cost_plot, epoch_plot = [], []
     bar_func = progressbar.ProgressBar(maxval=epoch)
@@ -28,6 +36,12 @@ def train(circuits, lr, epsilon, epoch, params):
               lr = lr + lr*2
           else:
               lr = lr
+
+    af = qt.Bloch()
+    for i in range(len(sample_vectors)):
+        af.add_states(qt.Qobj(inpt=sample_vectors[i]), kind='point')
+    af.save(name='/qnn/embedding/data_tmp/after.png', format='png', dirc=None)
+    #af.show()
 
     plt.plot(epoch_plot, cost_plot)
     plt.show()
