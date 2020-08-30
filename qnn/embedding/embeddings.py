@@ -22,7 +22,7 @@ cs_func = Circuits(
 cs = cs_func.create(dict.values[0])
 theta_xd = np.random.normal(0, 2*np.pi, 80)
 sample_vectors = cs_func.sample(cs, theta_xd)
-print(sample_vectors)
+#print(sample_vectors)
 
 ##
 parameters = np.random.normal(0, 2*np.pi, 80)

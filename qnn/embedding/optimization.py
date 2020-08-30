@@ -15,7 +15,6 @@ def cost(sample_vectors):
   for i in range(len(B)):
     for a in range(len(B)):
       if not i >= a:
-        #print(i, a)
         bb.append((np.inner(B[i], B[a])**2))
 
   for i in range(len(B)):
