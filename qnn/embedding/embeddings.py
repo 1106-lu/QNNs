@@ -22,8 +22,8 @@ cs_func = Circuits(
 cs = cs_func.create(dict.values[0])
 theta_xd = np.random.normal(0, 2*np.pi, 80)
 sample_vectors = cs_func.sample(cs, theta_xd)
-#print(sample_vectors)
+#print('initial vectors:', sample_vectors)
 
 ##
 parameters = np.random.normal(0, 2*np.pi, 80)
-train(cs, 500, .001, 10, parameters)
+train(cs, 500, .001, 8, parameters)
