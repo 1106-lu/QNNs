@@ -32,7 +32,7 @@ class GenerateDataRandomNormal():
 		x_label = np.append(x_label, label_0)
 		data_dict = pd.DataFrame({'DataPoint': x, 'Label': x_label}).transpose()
 
-		return data_dict  # , x, x_label
+		return data_dict, self.total_data_points
 
 	def plot(self, data_dict):
 		y = np.ones(self.total_data_points)

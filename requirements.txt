@@ -10,7 +10,7 @@ tensorflow-quantum
 #dataclasses; python_version < '3.7'
 #freezegun~=0.3.15
 #google-api-core[grpc] >= 1.14.0, < 2.0.0dev
-matplotlib~=3.0
+matplotlib==3.0.3
 networkx~=2.4
 numpy~=1.19.1
 pandas~=1.0.3

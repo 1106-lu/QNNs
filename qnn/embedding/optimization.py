@@ -1,5 +1,5 @@
 import numpy as np
-from qnn.embedding.circuits import Circuits
+from qnn.embedding.circuits import sample
 
 
 def cost(sample_vectors):
@@ -26,27 +26,23 @@ def cost(sample_vectors):
   return cost
 
 def g_parametershift(param, circuits, theta):
-  cs_func = Circuits(depth=4)
   perturbation_vector = np.zeros(len(theta))
   perturbation_vector[param] = np.pi/4
 
-  neg_vec = cs_func.sample(circuits, theta=(theta-perturbation_vector))
-  pos_vec = cs_func.sample(circuits, theta=(theta+perturbation_vector))
+  neg_vec = sample(circuits, theta=(theta-perturbation_vector))
+  pos_vec = sample(circuits, theta=(theta+perturbation_vector))
   result = cost(pos_vec) - cost(neg_vec)
   return result
 
 def g_finitedifference(param, circuits, params, epsilon):
-  cs_func = Circuits(depth=4)
   perturbation_vector = np.zeros(len(params))
   perturbation_vector[param] = 1
 
   new_neg = params - epsilon*perturbation_vector
   new_pos = params + epsilon*perturbation_vector
-  neg_vec = cs_func.sample(circuits, theta=new_neg)
-  pos_vec = cs_func.sample(circuits, theta=new_pos)
+  neg_vec = sample(circuits, theta=new_neg)
+  pos_vec = sample(circuits, theta=new_pos)
 
   result = (cost(pos_vec) - cost(neg_vec))/2*epsilon
   return result
-
-
 

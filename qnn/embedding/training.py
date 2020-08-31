@@ -1,9 +1,11 @@
 from qnn.embedding.optimization import cost, g_finitedifference, g_parametershift
-from qnn.embedding.circuits import Circuits
-from typing import List, Optional, Union
+from qnn.embedding.circuits import sample
+from typing import List, Optional, Union, Any
+from qnn.qutip_extras.plot_bloch import add_binary_points
 from numpy import ndarray
 
 import cirq
+import numpy as np
 import qutip as qt
 import matplotlib.pyplot as plt
 
@@ -15,7 +17,7 @@ class Training:
                  learning_rate: float,
                  epsilon: float,
                  epoch: int,
-                 initial_parameters: Union[ndarray, int, float, complex],
+                 initial_parameters: List[Union[float, Any]] or Union[ndarray, int, float, complex] or None,
                  plot_bloch: Optional[bool] = True,
                  parameter_shift: Optional[bool] = False):
         self.circuits = circuits
@@ -26,16 +28,18 @@ class Training:
         self.plot_bloch = plot_bloch
         self.parameter_shift = parameter_shift
 
+    @property
     def train(self):
-        cs_func = Circuits(depth=4)
-        sample_vectors = cs_func.sample(cs=self.circuits, theta=self.initial_parameters)
+        sample_vectors = sample(cs=self.circuits, theta=self.initial_parameters)
 
         if self.plot_bloch:
+            a = sample_vectors[10:]
+            b = sample_vectors[:10]
             be = qt.Bloch()
-            for i in range(len(sample_vectors)):
-                be.add_states(qt.Qobj(inpt=sample_vectors[i]), kind='point')
-            be.save(name='/Users/usuario/Desktop/QIT/QNNs/qnn/embedding/data_tmp/before.png', format='png')
-            #be.show()
+            be = add_binary_points(a, b, be)
+            if isinstance(be, qt.Bloch):
+                be.show()
+
 
         self.cost_plot, self.epoch_plot, self.params_plot = [], [], []
         #bar_func = progressbar.ProgressBar(maxval=self.epoch)
@@ -49,7 +53,7 @@ class Training:
                 else:
                     params[i] = params[i].real - lr * g_finitedifference(i, self.circuits, params, self.epsilon).real
 
-            sample_vectors = cs_func.sample(self.circuits, params)
+            sample_vectors = sample(self.circuits, params)
             self.cost_plot.append(cost(sample_vectors))
             self.epoch_plot.append(o)
             self.params_plot.append(params)
@@ -62,11 +66,13 @@ class Training:
                     lr = lr
 
         if self.plot_bloch:
+            a_final = sample_vectors[int((len(sample_vectors)) / 2):]
+            b_final = sample_vectors[:int((len(sample_vectors)) / 2)]
             af = qt.Bloch()
-            for i in range(len(sample_vectors)):
-                af.add_states(qt.Qobj(inpt=sample_vectors[i]), kind='point')
-            af.save(name='/Users/usuario/Desktop/QIT/QNNs/qnn/embedding/data_tmp/after.png', format='png')
-            #af.show()
+            af = add_binary_points(a_final, b_final, af)
+
+            if isinstance(af, qt.Bloch):
+                af.show()
 
         plt.plot(self.epoch_plot, self.cost_plot)
         plt.show()
@@ -83,4 +89,12 @@ class Training:
         print('min COST:', min_cost)
         print('min EPOCH:', min_i)
         print('min PARAM:', self.params_plot[min_i])
+        
+        sample_vectors = sample(self.circuits, self.params_plot[min_i])
+        a_final = sample_vectors[int((len(sample_vectors)) / 2):]
+        b_final = sample_vectors[:int((len(sample_vectors)) / 2)]
+        af = qt.Bloch()
+        af = add_binary_points(a_final, b_final, af)
+        af.show()
+        
         return self.params_plot[min_i], min_cost
