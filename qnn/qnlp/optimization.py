@@ -25,8 +25,8 @@ def cost(trial_result: cirq.TrialResult, word_num):
 		if i != word_num:
 			not_goal.append(get_overall_run(trial_result, i))
 
-	result = get_overall_run(trial_result, word_num) - sum(not_goal)**2
-	return result
+	result = get_overall_run(trial_result, word_num) - (sum(not_goal)/4)
+	return result**2
 
 
 def g_finite_difference(circuits, param, theta_sample, epsilon):
