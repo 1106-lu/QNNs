@@ -13,10 +13,10 @@ setup(name='qnn',
       url='https://github.com/TomiTeam/QNNs',
       author='Tomi',
       author_email='ockier1@gmail.com',
-      python_requires='>=3.6.0',
+      python_requires='>=3.6.5',
       install_requires=INSTALL_PACKAGES,
       license='null',
       description="",
       long_description=open('README.md', encoding='utf-8').read(),
-      packages=find_packages(),
+      packages=find_packages()
       )
