@@ -1,14 +1,13 @@
-from qnn.qnlp.circuits_numbers import create_circuits, sample_run, sample_simulate
 import numpy as np
 
-parameters = np.random.normal(0, 2*np.pi, 33)
+from qnn.qnlp.circuits_numbers import cc_1234567, sample_run_global
 
-c = create_circuits()
+parameters = np.random.normal(0, 2*np.pi, 32)
 
-result_simulate = sample_simulate(c, theta_sample=parameters)
-print('\n Simulations results: \n ', result_simulate, '\n \n')
+c = cc_1234567()
+for i in c:
+	print(i)
 
-result_run = sample_run(c, theta_sample=parameters, repetitions=100)
-print('\n Run results: \n', result_run, '\n \n')
-
-print(c)
+results = sample_run_global(c, parameters, 100)
+for i in results:
+	print(i)
