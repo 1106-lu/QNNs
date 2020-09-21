@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from qnn.qnlp.circuits_numbers import sample_run_global, cc_1234567_bitstring
+from qnn.qnlp.circuits_numbers import sample_run_global
+from qnn.qnlp.circuits_words import create_circuits
 from qnn.qnlp.optimization import cost_global, g_parameter_shift_global
 
 epsilon = .0000001
@@ -15,13 +16,13 @@ expected_bits = [[1, 1, 1],
                  [1, 0, 0],
                  [0, 1, 1]]
 
-c = cc_1234567_bitstring()
+c = create_circuits('C:/Users/usuario/Desktop/QIT/QNNs/qnn/qnlp/data/3Q DataBase.xlsx')
 for i in c:
     print('\n \n', i)
 
-epoch = 150
+epoch = 125
 lr = .001
-parameters = np.random.normal(0, 2 * np.pi, 18)
+parameters = np.random.normal(0, 2 * np.pi, 21)
 
 for o in range(epoch):
     result_global = sample_run_global(c, parameters, 18)

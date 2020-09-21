@@ -87,3 +87,6 @@ def g_parameter_shift_global(circuits: List[cirq.Circuit],
 	neg_result = sample_run_global(circuits, neg_theta, 1000)
 
 	return cost_global(pos_result, expected_bits) - cost_global(neg_result, expected_bits)
+
+def get_expected_bits(data):
+	pass

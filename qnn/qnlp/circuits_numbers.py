@@ -39,7 +39,7 @@ def cc_12_34():
 		gate_2.append(cirq.rx(theta[i + 5])(q[i]))
 		gate_3.append(cirq.rx(theta[i + 10])(q[i]))
 		gate_4.append(cirq.rx(theta[i + 15])(q[i]))
-	
+
 	circuits.append(cirq.Circuit())
 	circuits[0].append([gate_1, gate_2])
 	circuits.append(cirq.Circuit())
@@ -78,15 +78,34 @@ def cc_1234567():
 	return circuits
 
 
-def sample_run(circuits: cirq.Circuit(), theta_sample, repetitions):
-	a = 1
-	if not circuits.has_measurements():
-		for i in circuits.all_qubits():
-			circuits.append(cirq.measure(i))
-			a = a + 1
+def cc_1234567_bitstring():
+	circuits, q = [], []
+	gate_1, gate_2, gate_3, gate_4, gate_5, gate_6 = [], [], [], [], [], []
+	theta = sympy.symbols("theta:32")
 
-	resolver = cirq.ParamResolver({'theta' + str(e): theta_sample[e] for e in range(len(theta_sample))})
-	return cirq.Simulator().run(program=circuits, param_resolver=resolver, repetitions=repetitions)
+	for i in range(3):
+		q.append(cirq.GridQubit(i, 0))
+
+	for i in range(3):
+		gate_1.append(cirq.rx(theta[i])(q[i]))
+		gate_2.append(cirq.rx(theta[i + 3])(q[i]))
+		gate_3.append(cirq.rx(theta[i + 6])(q[i]))
+		gate_4.append(cirq.rx(theta[i + 9])(q[i]))
+		gate_5.append(cirq.rx(theta[i + 12])(q[i]))
+		gate_6.append(cirq.rx(theta[i + 15])(q[i]))
+
+	circuits.append(cirq.Circuit())
+	circuits[0].append([gate_1, gate_2, gate_3, gate_4, gate_5, gate_6])
+	circuits.append(cirq.Circuit())
+	circuits[1].append([gate_1, gate_2, gate_3, gate_4, gate_5])
+	circuits.append(cirq.Circuit())
+	circuits[2].append([gate_1, gate_2, gate_3, gate_4])
+	circuits.append(cirq.Circuit())
+	circuits[3].append([gate_1, gate_2, gate_3])
+	circuits.append(cirq.Circuit())
+	circuits[4].append([gate_1, gate_2])
+
+	return circuits
 
 
 def sample_run_global(circuits: List[cirq.Circuit], theta_sample, repetitions):
@@ -103,6 +122,17 @@ def sample_run_global(circuits: List[cirq.Circuit], theta_sample, repetitions):
 		results.append(cirq.Simulator().run(program=u, param_resolver=resolver, repetitions=repetitions))
 
 	return results
+
+
+def sample_run(circuits: cirq.Circuit(), theta_sample, repetitions):
+	a = 1
+	if not circuits.has_measurements():
+		for i in circuits.all_qubits():
+			circuits.append(cirq.measure(i))
+			a = a + 1
+
+	resolver = cirq.ParamResolver({'theta' + str(e): theta_sample[e] for e in range(len(theta_sample))})
+	return cirq.Simulator().run(program=circuits, param_resolver=resolver, repetitions=repetitions)
 
 
 def sample_simulate(circuits: cirq.Circuit(), theta_sample):

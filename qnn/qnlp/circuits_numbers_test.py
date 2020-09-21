@@ -1,13 +1,14 @@
 import numpy as np
 
-from qnn.qnlp.circuits_numbers import cc_1234567, sample_run_global
+from qnn.qnlp.circuits_words import CircuitsWords
 
-parameters = np.random.normal(0, 2*np.pi, 32)
+parameters = np.random.normal(0, 2 * np.pi, 32)
 
-c = cc_1234567()
-for i in c:
-	print(i)
+c = CircuitsWords('C:/Users/usuario/Desktop/QIT/QNNs/qnn/qnlp/data/3Q DataBase.xlsx')
+print(c)
 
-results = sample_run_global(c, parameters, 100)
-for i in results:
-	print(i)
+cir, next = c.create('Nico have', 'cat')
+
+# results = sample_run_global(c, parameters, 17)
+# for i in results:
+#	print(i)
