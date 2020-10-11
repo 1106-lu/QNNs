@@ -1,11 +1,85 @@
-Phrases:
-Nico have cat
-i have cat
-i have dog
-i have Nico
-you have Paula
-dog have cat
-you have cat
-Paula have dog
-you have Paula
-i have you
+Word;Num;BitStringWord;Phrase;LastWord
+a;0;0000000;Tomi is a;man
+about;1;0000001;Tomi is a;child
+after;2;0000010;Eva is a;woman
+Alice;3;0000011;Alice is a;woman
+an;4;0000100;Bob is a;man
+and;5;0000101;i have a;thing
+are;6;0000110;is important to have a good;place
+at;7;0000111;this is the;way
+be;8;0001000;i see;stuff
+Bob;9;0001001;i am a;person
+by;10;0001010;this is a;fact
+cat;11;0001011;i have a;problem
+child;12;0001100;i go to the;place
+come;13;0001101;my new;dog
+different;14;0001110;i think about;Eva
+do;15;0001111;Bob was a;friend
+dog;16;0010000;this is the;truth
+equal;17;0010001;the world is;different
+Eva;18;0010010;the world is;bad
+fact;19;0010011;i_am at;work
+first;20;0010100;she has a;dog
+for;21;0010101;nulo;nulo
+friend;22;0010110;nulo;nulo
+from;23;0010111;nulo;nulo
+get;24;0011000;nulo;nulo
+go;25;0011001;nulo;nulo
+good;26;0011010;nulo;nulo
+has;27;0011011;nulo;nulo
+have;28;0011100;nulo;nulo
+her;29;0011101;nulo;nulo
+his;30;0011110;nulo;nulo
+how;31;0011111;nulo;nulo
+i;32;0100000;nulo;nulo
+i_am;33;0100001;nulo;nulo
+important;34;0100010;nulo;nulo
+into;35;0100011;nulo;nulo
+is;36;0100100;nulo;nulo
+it;37;0100101;nulo;nulo
+know;38;0100110;nulo;nulo
+last;39;0100111;nulo;nulo
+life;40;0101000;nulo;nulo
+long;41;0101001;nulo;nulo
+make;42;0101010;nulo;nulo
+man;43;0101011;nulo;nulo
+my;44;0101100;nulo;nulo
+new;45;0101101;nulo;nulo
+not;46;0101110;nulo;nulo
+on ;47;0101111;nulo;nulo
+one;48;0110000;nulo;nulo
+over;49;0110001;nulo;nulo
+over;50;0110010;nulo;nulo
+person;51;0110011;nulo;nulo
+place;52;0110100;nulo;nulo
+point;53;0110101;nulo;nulo
+problem;54;0110110;nulo;nulo
+rose;55;0110111;nulo;nulo
+say;56;0111000;nulo;nulo
+see;57;0111001;nulo;nulo
+she;58;0111010;nulo;nulo
+short;59;0111011;nulo;nulo
+stuff;60;0111100;nulo;nulo
+take;61;0111101;nulo;nulo
+the;62;0111110;nulo;nulo
+their;63;0111111;nulo;nulo
+there;64;1000000;nulo;nulo
+thing;65;1000001;nulo;nulo
+think;66;1000010;nulo;nulo
+think;67;1000011;nulo;nulo
+three;68;1000100;nulo;nulo
+time;69;1000101;nulo;nulo
+to of in;70;1000110;nulo;nulo
+Tomi;71;1000111;nulo;nulo
+truth;72;1001000;nulo;nulo
+two;73;1001001;nulo;nulo
+up;74;1001010;nulo;nulo
+use;75;1001011;nulo;nulo
+was;76;1001100;nulo;nulo
+way;77;1001101;nulo;nulo
+were;78;1001110;nulo;nulo
+will;79;1001111;nulo;nulo
+with;80;1010000;nulo;nulo
+woman;81;1010001;nulo;nulo
+work;82;1010010;nulo;nulo
+world;83;1010011;nulo;nulo

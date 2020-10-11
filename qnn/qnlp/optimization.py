@@ -2,7 +2,7 @@ import cirq
 import numpy as np
 from typing import List
 
-from qnn.qnlp.circuits_numbers import sample_run, sample_run_global
+from qnn.qnlp.circuits_numbers import sample_run
 
 
 def get_overall_run(trial_result: cirq.TrialResult, num):
@@ -34,17 +34,6 @@ def cost_2(trial_result: cirq.TrialResult, expected_bits):
 	return (1 / 2 * len(trial_result.data.columns)) * sum(result)
 
 
-def cost_global(trial_results: List[cirq.TrialResult], expected_bits: List[List[float]]):
-	result, result_global = [], []
-
-	for a in range(len(trial_results)):
-		for i in range(len(trial_results[a].data.columns)):
-			result.append((get_overall_run(trial_results[a], i) - (expected_bits[a])[i])**2)
-		result_global.append((1 / 2 * len(trial_results[a].data.columns)) * sum(result))
-
-	return sum(result_global) / len(trial_results)
-
-
 def g_finite_difference(circuits, param, theta_sample, epsilon: float, expected_bits):
 	perturbation_vector = np.zeros(len(theta_sample))
 	perturbation_vector[param] = 1
@@ -73,7 +62,18 @@ def g_parameter_shift(circuits, param, theta_sample, expected_bits):
 	return result
 
 
-def g_parameter_shift_global(circuits: List[cirq.Circuit],
+def cost_global(trial_results: List[cirq.TrialResult], expected_bits: List[List[float]]):
+	result, result_global = [], []
+
+	for a in range(len(trial_results)):
+		for i in range(len(trial_results[a].data.columns)):
+			result.append((get_overall_run(trial_results[a], i) - (expected_bits[a])[i])**2)
+		result_global.append((1 / 2 * len(trial_results[a].data.columns)) * sum(result))
+
+	return sum(result_global) / len(trial_results)
+
+
+def g_parameter_shift_global(circuits,
                              param,
                              theta_sample,
                              expected_bits: List[List[float]]):
@@ -83,8 +83,8 @@ def g_parameter_shift_global(circuits: List[cirq.Circuit],
 	pos_theta = theta_sample + (np.pi / 4) * perturbation_vector
 	neg_theta = theta_sample - (np.pi / 4) * perturbation_vector
 
-	pos_result = sample_run_global(circuits, pos_theta, 1000)
-	neg_result = sample_run_global(circuits, neg_theta, 1000)
+	pos_result = circuits.sample_run_global(circuits, pos_theta, 1000)
+	neg_result = circuits.sample_run_global(circuits, neg_theta, 1000)
 
 	return cost_global(pos_result, expected_bits) - cost_global(neg_result, expected_bits)
 

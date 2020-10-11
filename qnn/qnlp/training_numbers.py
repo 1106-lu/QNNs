@@ -19,7 +19,7 @@ c = cc_1234567_bitstring()
 for i in c:
     print('\n \n', i)
 
-epoch = 150
+epoch = 300
 lr = .001
 parameters = np.random.normal(0, 2 * np.pi, 18)
 
