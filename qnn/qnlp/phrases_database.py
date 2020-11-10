@@ -7,7 +7,7 @@ def extract_words(excel_path: str):
     that is in form of a .xlsx file
     Return: List[str]"""
 
-	data_frame = pd.read_csv(excel_path, sep=';')
+	data_frame = pd.read_csv(excel_path, sep=',')
 	vocabulary: List[str] = []
 	for i in data_frame.values:
 		for u in i[0].split():

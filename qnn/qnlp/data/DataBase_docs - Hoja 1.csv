@@ -1,0 +1,85 @@
+Word,Num,BitStringWord,Phrase,LastWord
+Tomi,0,0,Tomi is a,man
+man,1,1,Eva is a,woman
+child,2,10,Alice is a,woman
+is,3,11,Bob is a,man
+a,4,100,i have a,thing
+about,5,101,is important to have a good,place
+after,6,110,this is the,way
+Alice,7,111,i see,stuff
+an,8,1000,nulo,nulo
+and,9,1001,nulo,nulo
+are,10,1010,nulo,nulo
+at,11,1011,nulo,nulo
+be,12,1100,nulo,nulo
+Bob,13,1101,nulo,nulo
+by,14,1110,nulo,nulo
+cat,15,1111,nulo,nulo
+come,16,10000,nulo,nulo
+different,17,10001,nulo,nulo
+do,18,10010,nulo,nulo
+dog,19,10011,nulo,nulo
+equal,20,10100,nulo,nulo
+Eva,21,10101,nulo,nulo
+fact,22,10110,nulo,nulo
+first,23,10111,nulo,nulo
+for,24,11000,nulo,nulo
+friend,25,11001,nulo,nulo
+from,26,11010,nulo,nulo
+get,27,11011,nulo,nulo
+go,28,11100,nulo,nulo
+good,29,11101,nulo,nulo
+has,30,11110,nulo,nulo
+have,31,11111,nulo,nulo
+her,32,100000,nulo,nulo
+his,33,100001,nulo,nulo
+how,34,100010,nulo,nulo
+i,35,100011,nulo,nulo
+i_am,36,100100,nulo,nulo
+important,37,100101,nulo,nulo
+into,38,100110,nulo,nulo
+it,39,100111,nulo,nulo
+know,40,101000,nulo,nulo
+last,41,101001,nulo,nulo
+life,42,101010,nulo,nulo
+long,43,101011,nulo,nulo
+make,44,101100,nulo,nulo
+my,45,101101,nulo,nulo
+new,46,101110,nulo,nulo
+not,47,101111,nulo,nulo
+on,48,110000,nulo,nulo
+one,49,110001,nulo,nulo
+over,50,110010,nulo,nulo
+over,51,110011,nulo,nulo
+person,52,110100,nulo,nulo
+place,53,110101,nulo,nulo
+point,54,110110,nulo,nulo
+problem,55,110111,nulo,nulo
+rose,56,111000,nulo,nulo
+say,57,111001,nulo,nulo
+see,58,111010,nulo,nulo
+she,59,111011,nulo,nulo
+short,60,111100,nulo,nulo
+stuff,61,111101,nulo,nulo
+take,62,111110,nulo,nulo
+the,63,111111,nulo,nulo
+their,64,1000000,nulo,nulo
+there,65,1000001,nulo,nulo
+thing,66,1000010,nulo,nulo
+think,67,1000011,nulo,nulo
+think,68,1000100,nulo,nulo
+three,69,1000101,nulo,nulo
+time,70,1000110,nulo,nulo
+to of in,71,1000111,nulo,nulo
+truth,72,1001000,nulo,nulo
+two,73,1001001,nulo,nulo
+up,74,1001010,nulo,nulo
+use,75,1001011,nulo,nulo
+was,76,1001100,nulo,nulo
+way,77,1001101,nulo,nulo
+were,78,1001110,nulo,nulo
+will,79,1001111,nulo,nulo
+with,80,1010000,nulo,nulo
+woman,81,1010001,nulo,nulo
+work,82,1010010,nulo,nulo
+world,83,1010011,nulo,nulo

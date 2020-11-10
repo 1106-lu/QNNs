@@ -1,76 +1,76 @@
 Word;Num;BitStringWord;Phrase;LastWord
-a;0;0000000;Tomi is a;man
-about;1;0000001;Tomi is a;child
-after;2;0000010;Eva is a;woman
-Alice;3;0000011;Alice is a;woman
-an;4;0000100;Bob is a;man
-and;5;0000101;i have a;thing
-are;6;0000110;is important to have a good;place
-at;7;0000111;this is the;way
-be;8;0001000;i see;stuff
-Bob;9;0001001;i am a;person
-by;10;0001010;this is a;fact
-cat;11;0001011;i have a;problem
-child;12;0001100;i go to the;place
-come;13;0001101;my new;dog
-different;14;0001110;i think about;Eva
-do;15;0001111;Bob was a;friend
-dog;16;0010000;this is the;truth
-equal;17;0010001;the world is;different
-Eva;18;0010010;the world is;bad
-fact;19;0010011;i_am at;work
-first;20;0010100;she has a;dog
-for;21;0010101;nulo;nulo
-friend;22;0010110;nulo;nulo
-from;23;0010111;nulo;nulo
-get;24;0011000;nulo;nulo
-go;25;0011001;nulo;nulo
-good;26;0011010;nulo;nulo
-has;27;0011011;nulo;nulo
-have;28;0011100;nulo;nulo
-her;29;0011101;nulo;nulo
-his;30;0011110;nulo;nulo
-how;31;0011111;nulo;nulo
-i;32;0100000;nulo;nulo
-i_am;33;0100001;nulo;nulo
-important;34;0100010;nulo;nulo
-into;35;0100011;nulo;nulo
-is;36;0100100;nulo;nulo
-it;37;0100101;nulo;nulo
-know;38;0100110;nulo;nulo
-last;39;0100111;nulo;nulo
-life;40;0101000;nulo;nulo
-long;41;0101001;nulo;nulo
-make;42;0101010;nulo;nulo
-man;43;0101011;nulo;nulo
-my;44;0101100;nulo;nulo
-new;45;0101101;nulo;nulo
-not;46;0101110;nulo;nulo
-on ;47;0101111;nulo;nulo
-one;48;0110000;nulo;nulo
-over;49;0110001;nulo;nulo
-over;50;0110010;nulo;nulo
-person;51;0110011;nulo;nulo
-place;52;0110100;nulo;nulo
-point;53;0110101;nulo;nulo
-problem;54;0110110;nulo;nulo
-rose;55;0110111;nulo;nulo
-say;56;0111000;nulo;nulo
-see;57;0111001;nulo;nulo
-she;58;0111010;nulo;nulo
-short;59;0111011;nulo;nulo
-stuff;60;0111100;nulo;nulo
-take;61;0111101;nulo;nulo
-the;62;0111110;nulo;nulo
-their;63;0111111;nulo;nulo
-there;64;1000000;nulo;nulo
-thing;65;1000001;nulo;nulo
-think;66;1000010;nulo;nulo
+Tomi;0;0;Tomi is a;man
+man;1;1;Tomi is a;child
+child;2;10;Eva is a;woman
+is;3;11;Alice is a;woman
+a;4;100;Bob is a;man
+about;5;101;i have a;thing
+after;6;110;is important to have a good;place
+Alice;7;111;this is the;way
+an;8;1000;i see;stuff
+and;9;1001;i am a;person
+are;10;1010;this is a;fact
+at;11;1011;i have a;problem
+be;12;1100;i go to the;place
+Bob;13;1101;my new;dog
+by;14;1110;i think about;Eva
+cat;15;1111;Bob was a;friend
+come;16;10000;this is the;truth
+different;17;10001;the world is;different
+do;18;10010;the world is;bad
+dog;19;10011;i_am at;work
+equal;20;10100;she has a;dog
+Eva;21;10101;nulo;nulo
+fact;22;10110;nulo;nulo
+first;23;10111;nulo;nulo
+for;24;11000;nulo;nulo
+friend;25;11001;nulo;nulo
+from;26;11010;nulo;nulo
+get;27;11011;nulo;nulo
+go;28;11100;nulo;nulo
+good;29;11101;nulo;nulo
+has;30;11110;nulo;nulo
+have;31;11111;nulo;nulo
+her;32;100000;nulo;nulo
+his;33;100001;nulo;nulo
+how;34;100010;nulo;nulo
+i;35;100011;nulo;nulo
+i_am;36;100100;nulo;nulo
+important;37;100101;nulo;nulo
+into;38;100110;nulo;nulo
+it;39;100111;nulo;nulo
+know;40;101000;nulo;nulo
+last;41;101001;nulo;nulo
+life;42;101010;nulo;nulo
+long;43;101011;nulo;nulo
+make;44;101100;nulo;nulo
+my;45;101101;nulo;nulo
+new;46;101110;nulo;nulo
+not;47;101111;nulo;nulo
+on ;48;110000;nulo;nulo
+one;49;110001;nulo;nulo
+over;50;110010;nulo;nulo
+over;51;110011;nulo;nulo
+person;52;110100;nulo;nulo
+place;53;110101;nulo;nulo
+point;54;110110;nulo;nulo
+problem;55;110111;nulo;nulo
+rose;56;111000;nulo;nulo
+say;57;111001;nulo;nulo
+see;58;111010;nulo;nulo
+she;59;111011;nulo;nulo
+short;60;111100;nulo;nulo
+stuff;61;111101;nulo;nulo
+take;62;111110;nulo;nulo
+the;63;111111;nulo;nulo
+their;64;1000000;nulo;nulo
+there;65;1000001;nulo;nulo
+thing;66;1000010;nulo;nulo
 think;67;1000011;nulo;nulo
-three;68;1000100;nulo;nulo
-time;69;1000101;nulo;nulo
-to of in;70;1000110;nulo;nulo
-Tomi;71;1000111;nulo;nulo
+think;68;1000100;nulo;nulo
+three;69;1000101;nulo;nulo
+time;70;1000110;nulo;nulo
+to of in;71;1000111;nulo;nulo
 truth;72;1001000;nulo;nulo
 two;73;1001001;nulo;nulo
 up;74;1001010;nulo;nulo

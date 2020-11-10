@@ -1,6 +1,7 @@
 import cirq
 import numpy as np
 import pandas as pd
+from datetime import datetime
 from typing import List
 
 from qnn.qnlp.circuits_words import CircuitsWords
@@ -36,27 +37,34 @@ def g_parameter_shift_global_words(circuits_object: CircuitsWords,
                                    expected_bits: List[List[float]]):
 	perturbation_vector = np.zeros(len(theta_sample))
 	perturbation_vector[param] = 1
+	print('gradient in', datetime.now().time())
 
 	pos_theta = theta_sample + (np.pi / 4) * perturbation_vector
 	neg_theta = theta_sample - (np.pi / 4) * perturbation_vector
 
-	pos_result = circuits_object.sample_run_global(pos_theta, 1000)
-	neg_result = circuits_object.sample_run_global(neg_theta, 1000)
+	pos_result = circuits_object.sample_run_global(pos_theta, 100)
+	neg_result = circuits_object.sample_run_global(neg_theta, 100)
+	print('gradient out', datetime.now().time())
 
 	return cost_global_words(pos_result, expected_bits) - cost_global_words(neg_result, expected_bits)
 
 
-def get_expected_bits(data_frame: pd.DataFrame, num_phrases: int):
+def get_expected_bits(data_frame: pd.DataFrame, num_phrases: int, num_qubits: int):
 	expected_bits = [[] for __ in range(num_phrases)]
 	a = 0
-	for j in data_frame.transpose().values[4][:21]:
+	for j in data_frame.transpose().values[4][:num_phrases]:
+		print(j)
 		index = 0
 		for i in data_frame.transpose().values[0]:
 			if i == j:
 				break
 			index += 1
+			if index == 84:
+				raise ValueError('Word not found')
+
+		print(index)
 		bit = bin(index)[2:]
-		for _ in range(7 - len(bit)):
+		for _ in range(num_qubits - len(bit)):
 			expected_bits[a].append(0)
 		for l in bit:
 			expected_bits[a].append(int(l))
