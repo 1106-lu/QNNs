@@ -1,7 +1,6 @@
 import cirq
 import numpy as np
 import pandas as pd
-from datetime import datetime
 from typing import List
 
 from qnn.qnlp.circuits_words import CircuitsWords
@@ -37,14 +36,14 @@ def g_parameter_shift_global_words(circuits_object: CircuitsWords,
                                    expected_bits: List[List[float]]):
 	perturbation_vector = np.zeros(len(theta_sample))
 	perturbation_vector[param] = 1
-	print('gradient in', datetime.now().time())
+	#print('gradient in', datetime.now().time())
 
 	pos_theta = theta_sample + (np.pi / 4) * perturbation_vector
 	neg_theta = theta_sample - (np.pi / 4) * perturbation_vector
 
 	pos_result = circuits_object.sample_run_global(pos_theta, 100)
 	neg_result = circuits_object.sample_run_global(neg_theta, 100)
-	print('gradient out', datetime.now().time())
+	#print('gradient out', datetime.now().time())
 
 	return cost_global_words(pos_result, expected_bits) - cost_global_words(neg_result, expected_bits)
 

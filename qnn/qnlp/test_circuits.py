@@ -1,12 +1,7 @@
-import numpy as np
+print('This message will be displayed on the screen.')
 
-from qnn.qnlp.circuits_words import CircuitsWords
+with open('C:/Users/usuario/Desktop/QIT/QNNs/qnn/qnlp/data/data_save.txt', 'w') as f:
+    print('This message will be written to a file. UWU', file=f)
 
-c = CircuitsWords('C:/Users/usuario/Desktop/QIT/QNNs/qnn/qnlp/data/DataBase_docs - Hoja 1.csv', 7, 7)
-circuits = c.create()
-for i in circuits:
-	print(circuits)
-for _ in range(10):
-	results = c.sample_run_global(np.random.normal(0, 2 * np.pi, 1000), 100)
-	print(results)
-print(c.params_used)
+with open('C:/Users/usuario/Desktop/QIT/QNNs/qnn/qnlp/data/data_save.txt', 'w') as f:
+    print('This message will be written to a file. UWU 2', file=f)

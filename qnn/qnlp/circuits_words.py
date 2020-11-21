@@ -36,7 +36,7 @@ class CircuitsWords:
 			self.gates.append(gates_words)
 		self.dic_gates = {self.voc[e]: self.gates[e] for e in range(len(self.voc))}
 
-		for i in self.df.transpose().values[3][:2]:
+		for i in self.df.transpose().values[3][:self.num_phrases]:
 			for k in i.split():
 				if k == 'nulo':
 					break
@@ -61,7 +61,7 @@ class CircuitsWords:
 		global bitstring
 		data_frame = pd.read_csv(self.data, sep=',')
 		e = 0
-		for i in data_frame.transpose().values[3][:2]:
+		for i in data_frame.transpose().values[3][:self.num_phrases]:
 			if i != 'nulo':
 				last = data_frame.transpose().values[4][e]
 				o = 0
