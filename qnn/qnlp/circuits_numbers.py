@@ -138,4 +138,3 @@ def sample_run(circuits: cirq.Circuit(), theta_sample, repetitions):
 def sample_simulate(circuits: cirq.Circuit(), theta_sample):
 	resolver = cirq.ParamResolver({'theta' + str(e): theta_sample[e] for e in range(len(theta_sample))})
 	return cirq.Simulator().simulate(program=circuits, param_resolver=resolver)
-
