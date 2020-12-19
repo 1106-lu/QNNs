@@ -2,7 +2,7 @@ import cirq
 import numpy as np
 from typing import List
 
-from qnn.qnlp.circuits_numbers import sample_run
+from qnn.qnlp.circuits_numbers import sample_run, sample_run_global
 
 
 def get_overall_run(trial_result: cirq.TrialResult, num):
@@ -83,7 +83,7 @@ def g_parameter_shift_global(circuits,
 	pos_theta = theta_sample + (np.pi / 4) * perturbation_vector
 	neg_theta = theta_sample - (np.pi / 4) * perturbation_vector
 
-	pos_result = circuits.sample_run_global(circuits, pos_theta, 1000)
-	neg_result = circuits.sample_run_global(circuits, neg_theta, 1000)
+	pos_result = sample_run_global(circuits, pos_theta, 1000)
+	neg_result = sample_run_global(circuits, neg_theta, 1000)
 
 	return cost_global(pos_result, expected_bits) - cost_global(neg_result, expected_bits)
