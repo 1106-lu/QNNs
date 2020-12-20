@@ -24,7 +24,7 @@ If we create QCs that are equivalent to sentences with the words as a quantum ga
 one), we could in theory optimize them in such a way that upon measuring we get a bitstring equivalent to the last word
 of the sentence the circuit will have learned how to complete sentences.
 
-Here you have a QC diagram to ilustrate the idea:
+Here you have a QC diagram to ilustrate the idea:  
 ![Hello my name is...](https://cdn.discordapp.com/attachments/549524193906130944/790163983188492319/unknown.png)  
 In this case the measurement of the qubits has to be a proper noun for the sentence to make sense.
 
