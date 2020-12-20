@@ -25,7 +25,7 @@ one), we could in theory optimize them in such a way that upon measuring we get 
 of the sentence the circuit will have learned how to complete sentences.
 
 Here you have a QC diagram to illustrate the idea:  
-![Hello my name is...](https://cdn.discordapp.com/attachments/549524193906130944/790163983188492319/unknown.png)  
+![Hello my name is...](https://cdn.discordapp.com/attachments/549524193906130944/790238222785052702/unknown.png)  
 In this case the measurement of the qubits has to be a proper noun for the sentence to make sense.
 
 The actual quantum circuit would be this one:  
