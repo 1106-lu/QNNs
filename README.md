@@ -25,13 +25,13 @@ one), we could in theory optimize them in such a way that upon measuring we get 
 of the sentence the circuit will have learned how to complete sentences.
 
 Here you have a QC diagram to ilustrate the idea:
-![Hello my name is...](https://media.discordapp.net/attachments/549524193906130944/789925326369062942/unknown.png?width=1055&height=504)
+![Hello my name is...](https://cdn.discordapp.com/attachments/549524193906130944/790163983188492319/unknown.png)  
 In this case the measurement of the qubits has to be a proper noun for the sentence to make sense.
 
 But the actual quantum circuit would this one:
-![Rx..](https://cdn.discordapp.com/attachments/549524193906130944/789926095642165268/unknown.png)
+![Rx..](https://cdn.discordapp.com/attachments/549524193906130944/790163803031470090/unknown.png)
 With parameterized X gates applied to all the qubits, each word has it's own parameter (e.g. Theta1 is the parameter for
-the gate equivalent to the word "Hello")
+the gate equivalent to the word "Hello").
 
 ### Results:
 
@@ -42,4 +42,4 @@ or simulate the circuits on a more efficient simulator (like [qsim](https://gith
 The second thing is that is an inefficient model overall, I have that feeling, and you probably have it too. There isn't
 a proper use of quantum superposition or entanglement on this model, the two powerful advantages of quantum computing. I
 also think that is too simple to be efficient, we need something more complicated to get some good results, like a
-sentence o word embedding based on superposition and entanglement for example
+sentence o word embedding based on superposition and entanglement for example.
