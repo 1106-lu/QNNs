@@ -33,6 +33,14 @@ The actual quantum circuit would be this one:
 With parameterized X gates applied to all the qubits, each word has its parameter (e.g. Theta1 is the parameter for the
 gate equivalent to the word "Hello").
 
+### Optimization:
+
+The optimization is carried out by the Mean Squared Error of the measurement as the cost function. Taken the local cost
+using the MSE on all the measurements of all qubits of a circuit, and an average of all the local cost (of all the
+circuits) as the global cost (view QNLP_EQ.pdf for more detail).  
+To optimize the circuit we update the parameters according to the gradient of the cost function until the function is at
+its minima. We use the parameter shift method for the evaluation of the gradient (view QNLP_EQ.pdf for more detail).
+
 ### Results:
 
 As I already said, QTx is a failure:  
