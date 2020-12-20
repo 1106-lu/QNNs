@@ -28,7 +28,7 @@ Here you have a QC diagram to illustrate the idea:
 ![Hello my name is...](https://cdn.discordapp.com/attachments/549524193906130944/790163983188492319/unknown.png)  
 In this case the measurement of the qubits has to be a proper noun for the sentence to make sense.
 
-The actual quantum circuit would be this one:
+The actual quantum circuit would be this one:  
 ![Rx..](https://cdn.discordapp.com/attachments/549524193906130944/790191124479213588/unknown.png)  
 With parameterized X gates applied to all the qubits, each word has its parameter (e.g. Theta1 is the parameter for the
 gate equivalent to the word "Hello").
