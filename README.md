@@ -11,15 +11,16 @@ QTx:
 
 ### Explanation of concept:
 
-It works on the basis that phrases in language work in a stochastic manner: if you're listening to someone that says "
+This model works on the basis that phrases in language work in a probabilistic manner: if you're listening to someone
+that says "
 my name is..." probably the next word is a proper noun. If you are task to guess the next word like on the board
 game [Guess Who?](https://www.google.com/search?q=guess+who%3F&safe=active&rlz=1C1GCEA_enES784ES784&sxsrf=ALeKk024lTX8CsWgIWM7h_he7S16VDHwJw:1608242537721&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjOnLGpgtbtAhVExYUKHQc-C9IQ_AUoAXoECCEQAw&biw=958&bih=920)
-, and if you got for example some verbs on the table you probably would toss them out.
+, and if you got some verbs at the table you probably would toss them out.
 
-Now that we got how a stochastic way of thinking about language, although it is not very powerful, we can implement it
-through
-[quantum circuits](https://en.wikipedia.org/wiki/Quantum_circuit) (QCs) that behave stochastically by their nature. QCs
-consist of a series of quantum gates that are applied in a specific order, like the words on sentences.  
+Now that we got how a probabilistic way of thinking about language, although it is not very powerful, we can implement
+it through
+[quantum circuits](https://en.wikipedia.org/wiki/Quantum_circuit) (QCs) that behave probabilistically by their own
+nature. QCs consist of a series of quantum gates that are applied in a specific order, like the words on sentences.  
 If we create QCs that are equivalent to sentences with the words as a quantum gates (with all the words except the last
 one), we could in theory optimize them in such a way that upon measuring we get a bitstring equivalent to the last word
 of the sentence the circuit will have learned how to complete sentences.
@@ -50,4 +51,7 @@ or simulate the circuits on a more efficient simulator (like [qsim](https://gith
 On the other hand, is an inefficient model overall, I have that feeling, and you probably have it too. There isn't a
 proper use of quantum superposition or entanglement on this model, the two powerful advantages of quantum computing. I
 also think that is too simple to be efficient, we need something more complicated to get good results, like a sentence o
-word embedding based on superposition and entanglement for example.
+word embedding based on superposition and entanglement for example.  
+Also, we can see that a phrase like "I have a" can give a lot of possible last words, this model can give so many
+predictions that it isn't practical to used'it (the output in this case could be an equal probability for all the nouns
+that start with a consonant, a lot of possible answers). 

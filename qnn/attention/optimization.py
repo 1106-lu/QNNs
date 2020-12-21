@@ -2,7 +2,7 @@ import cirq
 import numpy as np
 from typing import List
 
-from qnn.qnlp.circuits_numbers import sample_run, sample_run_global
+from qnn.attention.circuits_numbers import sample_run, sample_run_global
 
 
 def get_overall_run(trial_result: cirq.TrialResult, num):

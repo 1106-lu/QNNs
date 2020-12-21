@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 
+from qnn.attention.optimization import cost_global
 from qnn.qnlp.circuits_words import CircuitsWords
-from qnn.qnlp.optimization import cost_global
 from qnn.qnlp.optimization_words import g_parameter_shift_global_words, get_expected_bits
 
 cost_plot, epoch_plot, param_plot = [], [], []  # lists for plotting the results at the end

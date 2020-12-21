@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from qnn.qnlp.circuits_numbers import sample_run_global, cc_1234567_bitstring
-from qnn.qnlp.optimization import cost_global, g_parameter_shift_global
+from qnn.attention.circuits_numbers import sample_run_global, cc_1234567_bitstring
+from qnn.attention.optimization import cost_global, g_parameter_shift_global
 
 epsilon = .0000001
 cost_plot = []
