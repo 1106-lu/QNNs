@@ -4,6 +4,7 @@ import numpy as np
 import os
 import plotly
 import plotly.graph_objects as go
+import random
 import re
 import tensorflow as tf
 import time
@@ -12,7 +13,7 @@ from sklearn.model_selection import train_test_split
 from qnn.attention.attention_word_index_mapping import LanguageIndex, max_length
 
 # Set the file path
-file_path = './mar.txt'  # this might be different in your system
+file_path = 'C:/Users/usuario/Desktop/QIT/QNNs/qnn/attention/data/spa.txt'  # this might be different in your system
 
 # read the file
 lines = open(file_path, encoding='UTF-8').read().strip().split('\n')
@@ -31,30 +32,43 @@ def preprocess_eng_sentence(sent):
 	sent = sent.strip()
 	sent = re.sub(" +", " ", sent)
 	sent = '<start> ' + sent + ' <end>'
+	return sent
 
 
-def preprocess_mar_sentence(sent):
-	'''Function to preprocess Marathi sentence'''
+def preprocess_spa_sentence(sent):
+	'''Function to preprocess Spanish sentence'''
+	sent = sent.lower()
 	sent = re.sub("'", '', sent)
 	sent = ''.join(ch for ch in sent if ch not in exclude)
-	sent = re.sub("[२३०८१५७९४६]", "", sent)
+	sent = sent.translate(remove_digits)
 	sent = sent.strip()
 	sent = re.sub(" +", " ", sent)
 	sent = '<start> ' + sent + ' <end>'
 	return sent
 
 
-# Generate pairs of cleaned English and Marathi sentences
+# Generate pairs of cleaned English and Spanish sentences
 sent_pairs = []
+i = 0
 for line in lines:
+	i += 1
 	sent_pair = []
-	eng, mar = line.split('\t')
+	eng, spa, _ = line.split('\t')
 	eng = preprocess_eng_sentence(eng)
 	sent_pair.append(eng)
-	mar = preprocess_mar_sentence(mar)
-	sent_pair.append(mar)
+	spa = preprocess_spa_sentence(spa)
+	sent_pair.append(spa)
 	sent_pairs.append(sent_pair)
-	# return sent
+
+random.shuffle(sent_pairs)
+sent_pairs_input = sent_pairs[1000:2000]
+
+
+#  if i == 10000:
+#  	break
+#  else:
+#  	pass
+# return sent
 
 
 def load_dataset(pairs, num_examples):
@@ -89,7 +103,8 @@ def load_dataset(pairs, num_examples):
 
 
 # Create the tensors
-input_tensor, target_tensor, inp_lang, targ_lang, max_length_inp, max_length_targ = load_dataset(sent_pairs, len(lines))
+input_tensor, target_tensor, inp_lang, targ_lang, max_length_inp, max_length_targ = load_dataset(sent_pairs_input,
+                                                                                                 len(lines))
 
 # Creating training and validation sets using an 80-20 split
 input_tensor_train, input_tensor_val, target_tensor_train, target_tensor_val = train_test_split(input_tensor,
@@ -106,9 +121,13 @@ units = 1024
 vocab_inp_size = len(inp_lang.word2idx)
 vocab_tar_size = len(targ_lang.word2idx)
 
+print(BUFFER_SIZE, BATCH_SIZE, N_BATCH, vocab_inp_size, vocab_tar_size)
+
 # Create batch generator to be used by modle to load data in batches
 dataset = tf.data.Dataset.from_tensor_slices((input_tensor_train, target_tensor_train)).shuffle(BUFFER_SIZE)
 dataset = dataset.batch(BATCH_SIZE, drop_remainder=True)
+
+print('Data set prepared')
 
 
 class LanguageIndex():
@@ -164,7 +183,7 @@ class Encoder(tf.keras.Model):
 		self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim)
 		self.gru = gru(self.enc_units)
 
-	def call(self, x, hidden):
+	def __call__(self, x, hidden):
 		x = self.embedding(x)
 		output, state = self.gru(x, initial_state=hidden)
 		return output, state
@@ -187,7 +206,7 @@ class Decoder(tf.keras.Model):
 		self.W2 = tf.keras.layers.Dense(self.dec_units)
 		self.V = tf.keras.layers.Dense(1)
 
-	def call(self, x, hidden, enc_output):
+	def __call__(self, x, hidden, enc_output):
 		# enc_output shape == (batch_size, max_length, hidden_size)
 
 		# hidden shape == (batch_size, hidden size)
@@ -237,7 +256,7 @@ class Decoder(tf.keras.Model):
 encoder = Encoder(vocab_inp_size, embedding_dim, units, BATCH_SIZE)
 decoder = Decoder(vocab_tar_size, embedding_dim, units, BATCH_SIZE)
 
-optimizer = tf.train.AdamOptimizer()
+optimizer = tf.keras.optimizers.Adam()
 
 
 def loss_function(real, pred):
@@ -252,56 +271,40 @@ checkpoint = tf.train.Checkpoint(optimizer=optimizer,
                                  encoder=encoder,
                                  decoder=decoder)
 
-EPOCHS = 10
+print('Model defined')
 
+EPOCHS = 35
 for epoch in range(EPOCHS):
 	start = time.time()
-
 	hidden = encoder.initialize_hidden_state()
 	total_loss = 0
-
 	for (batch, (inp, targ)) in enumerate(dataset):
 		loss = 0
-
 		with tf.GradientTape() as tape:
 			enc_output, enc_hidden = encoder(inp, hidden)
-
 			dec_hidden = enc_hidden
-
 			dec_input = tf.expand_dims([targ_lang.word2idx['<start>']] * BATCH_SIZE, 1)
-
 			# Teacher forcing - feeding the target as the next input
 			for t in range(1, targ.shape[1]):
 				# passing enc_output to the decoder
 				predictions, dec_hidden, _ = decoder(dec_input, dec_hidden, enc_output)
-
 				loss += loss_function(targ[:, t], predictions)
-
 				# using teacher forcing
 				dec_input = tf.expand_dims(targ[:, t], 1)
-
 		batch_loss = (loss / int(targ.shape[1]))
-
 		total_loss += batch_loss
-
 		variables = encoder.variables + decoder.variables
-
 		gradients = tape.gradient(loss, variables)
-
 		optimizer.apply_gradients(zip(gradients, variables))
-
 		if batch % 100 == 0:
 			print('Epoch {} Batch {} Loss {:.4f}'.format(epoch + 1,
 			                                             batch,
 			                                             batch_loss.numpy()))
 	# saving (checkpoint) the model every epoch
 	checkpoint.save(file_prefix=checkpoint_prefix)
-
 	print('Epoch {} Loss {:.4f}'.format(epoch + 1,
 	                                    total_loss / N_BATCH))
 	print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
-
-
 def evaluate(inputs, encoder, decoder, inp_lang, targ_lang, max_length_inp, max_length_targ):
 	attention_plot = np.zeros((max_length_targ, max_length_inp))
 	sentence = ''
@@ -310,39 +313,26 @@ def evaluate(inputs, encoder, decoder, inp_lang, targ_lang, max_length_inp, max_
 			break
 		sentence = sentence + inp_lang.idx2word[i] + ' '
 	sentence = sentence[:-1]
-
 	inputs = tf.convert_to_tensor(inputs)
-
 	result = ''
-
 	hidden = [tf.zeros((1, units))]
 	enc_out, enc_hidden = encoder(inputs, hidden)
-
 	dec_hidden = enc_hidden
 	dec_input = tf.expand_dims([targ_lang.word2idx['<start>']], 0)
-
 	# start decoding
 	for t in range(max_length_targ):  # limit the length of the decoded sequence
 		predictions, dec_hidden, attention_weights = decoder(dec_input, dec_hidden, enc_out)
-
 		# storing the attention weights to plot later on
 		attention_weights = tf.reshape(attention_weights, (-1,))
 		attention_plot[t] = attention_weights.numpy()
-
 		predicted_id = tf.argmax(predictions[0]).numpy()
-
 		result += targ_lang.idx2word[predicted_id] + ' '
-
 		# stop decoding if '<end>' is predicted
 		if targ_lang.idx2word[predicted_id] == '<end>':
 			return result, sentence, attention_plot
-
 		# the predicted ID is fed back into the model
 		dec_input = tf.expand_dims([predicted_id], 0)
-
 	return result, sentence, attention_plot
-
-
 def predict_random_val_sentence():
 	actual_sent = ''
 	k = np.random.randint(len(input_tensor_val))
@@ -367,7 +357,6 @@ def predict_random_val_sentence():
 	trace = go.Heatmap(z=attention_plot, x=sentence, y=result, colorscale='Reds')
 	data = [trace]
 	plotly.offline.iplot(data)
-
-
 # Finally call the function multiple times to visualize random results from the test set
-predict_random_val_sentence()
+for _ in range(10):
+	predict_random_val_sentence()

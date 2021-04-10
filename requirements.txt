@@ -1,4 +1,4 @@
-cirq==0.8.2
+cirq==0.8.0
 seaborn
 sphinx
 scipy
@@ -12,9 +12,11 @@ pandas~=1.0.3
 
 #dataclasses; python_version < '3.7'
 #freezegun~=0.3.15
-#protobuf==3.8.
 #qutip~=4.5.2
 #setuptools~=49.6.0
 #requests~=2.18
 #typing_extensions
 setuptools~=49.6.0
+scikit-learn~=0.23.2
+pydot~=1.4.1
+plotly~=4.14.1
